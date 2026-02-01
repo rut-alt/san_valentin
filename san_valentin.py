@@ -44,7 +44,7 @@ elif st.session_state.step == 99:
         unsafe_allow_html=True
     )
 
-    show_image("images/enfadada.jpg")
+    show_image("images/enfadada.png")
 
     st.error("Respuesta incorrecta. Vuelve a empezar.")
 
