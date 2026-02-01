@@ -1,70 +1,39 @@
-import tkinter as tk
+import streamlit as st
 import random
 
-# Ventana principal
-root = tk.Tk()
-root.title("💘 San Valentín 💘")
-root.geometry("800x500")
-root.configure(bg="#ffe6f0")
-
-# Texto principal
-label = tk.Label(
-    root,
-    text="Hola Jorge mi amor, ¿Quieres una cita conmigo el 14 de febrero? 💖",
-    font=("Helvetica", 24, "bold"),
-    bg="#ffe6f0",
-    fg="#cc0052",
-    wraplength=700
+st.set_page_config(
+    page_title="💘 San Valentín 💘",
+    layout="centered"
 )
-label.pack(pady=40)
 
-# Función cuando dice que SÍ
-def yes_clicked():
-    for widget in root.winfo_children():
-        widget.destroy()
+st.markdown(
+    """
+    <h1 style="text-align:center; color:#e60073;">
+    ¿Quieres una cita conmigo el 14 de febrero? 💖
+    </h1>
+    """,
+    unsafe_allow_html=True
+)
 
-    final_label = tk.Label(
-        root,
-        text="🥰 Sabía que dirías que sí 🥰\n\nPrepárate para una cita inolvidable 💕",
-        font=("Helvetica", 26, "bold"),
-        bg="#ffe6f0",
-        fg="#990033",
-        wraplength=700
+# Estado para controlar el NO
+if "no_position" not in st.session_state:
+    st.session_state.no_position = random.randint(0, 2)
+
+# Botón SÍ (grande y evidente)
+st.markdown("<br>", unsafe_allow_html=True)
+if st.button("💘 SÍ 💘"):
+    st.success("🥰 Sabía que dirías que sí 🥰")
+    st.balloons()
+    st.markdown(
+        "<h2 style='text-align:center;'>Prepárate para una cita inolvidable 💕</h2>",
+        unsafe_allow_html=True
     )
-    final_label.pack(expand=True)
+    st.stop()
 
-# Botón SÍ (grande y visible)
-yes_button = tk.Button(
-    root,
-    text="SÍ 💘",
-    font=("Helvetica", 30, "bold"),
-    bg="#ff4d88",
-    fg="white",
-    activebackground="#ff1a66",
-    padx=40,
-    pady=20,
-    command=yes_clicked,
-    borderwidth=0
-)
-yes_button.pack(pady=20)
+st.markdown("<br><br>", unsafe_allow_html=True)
 
-# Botón NO (escapista profesional)
-no_button = tk.Button(
-    root,
-    text="NO 🙄",
-    font=("Helvetica", 14),
-    bg="#cccccc",
-    fg="black"
-)
-no_button.place(x=350, y=350)
+# Botón NO que se mueve
+cols = st.columns(3)
 
-# Función para mover el botón NO
-def move_no_button(event):
-    x = random.randint(0, root.winfo_width() - 100)
-    y = random.randint(0, root.winfo_height() - 50)
-    no_button.place(x=x, y=y)
-
-# El botón NO huye cuando el ratón se acerca
-no_button.bind("<Enter>", move_no_button)
-
-root.mainloop()
+if cols[st.session_state.no_position].button("NO 🙄"):
+    st.session_state.no_position = rando
