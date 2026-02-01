@@ -39,21 +39,21 @@ if st.session_state.step == 1:
         st.rerun()
 
     cols = st.columns(3)
-    if cols[st.session_state.no_position].button("NO 🙄"):
+    if cols[st.session_state.no_position].button("NO "):
         st.session_state.no_position = random.randint(0, 2)
         st.rerun()
 
 
 # ---------- STEP 2: CENA ----------
 elif st.session_state.step == 2:
-    st.markdown("<h1 style='text-align:center;'>¿Qué te gustaría cenar? 😋</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align:center;'>¿Qué te gustaría cenar? </h1>", unsafe_allow_html=True)
 
     col1, col2 = st.columns(2)
     col3, col4 = st.columns(2)
 
     with col1:
         st.image("images/sushi.jpg", use_container_width=True)
-        if st.button("🍣 Sushi"):
+        if st.button("Sushi"):
             st.session_state.cena = "Sushi"
             st.session_state.cena_img = "images/sushi.jpg"
             st.session_state.step = 3
@@ -61,19 +61,19 @@ elif st.session_state.step == 2:
 
     with col2:
         st.image("images/carne.jpg", use_container_width=True)
-        if st.button("🥩 Carne"):
+        if st.button("Carne"):
             st.session_state.cena = "Carne"
             st.session_state.cena_img = "images/carne.jpg"
             st.session_state.step = 3
             st.rerun()
 
     with col3:
-        st.image("images/ami.jpg", use_container_width=True)
-        if st.button("😏 A mí"):
-            st.warning("ANDA TONTO 😂 ese es el postre!! ¡Elige bien!")
+        st.image("images/yo.jpg", use_container_width=True)
+        if st.button(" A mí"):
+            st.warning("ANDA TONTO, ese es el postre!! ¡Elige bien!")
 
     with col4:
-        st.markdown("### 🤷‍♂️ Otro")
+        st.markdown("### Otro")
         otro = st.text_input("¿Qué te apetece?", placeholder="Escribe aquí...")
         if otro:
             st.session_state.cena = otro
@@ -85,7 +85,7 @@ elif st.session_state.step == 2:
 # ---------- STEP 3: ROPA ----------
 elif st.session_state.step == 3:
     st.markdown(
-        "<h1 style='text-align:center;'>¿Qué te gustaría más que me pusiera para nuestra cita? 😌</h1>",
+        "<h1 style='text-align:center;'>¿Qué te gustaría más que me pusiera para nuestra cita? </h1>",
         unsafe_allow_html=True
     )
 
@@ -93,7 +93,7 @@ elif st.session_state.step == 3:
 
     with col1:
         st.image("images/falda.jpg", use_container_width=True)
-        if st.button("👗 Falda"):
+        if st.button("Falda"):
             st.session_state.ropa = "Falda"
             st.session_state.ropa_img = "images/falda.jpg"
             st.session_state.step = 4
@@ -101,17 +101,17 @@ elif st.session_state.step == 3:
 
     with col2:
         st.image("images/vestido_corto.jpg", use_container_width=True)
-        if st.button("💃 Vestido corto"):
+        if st.button("Vestido "):
             st.session_state.ropa = "Vestido corto"
-            st.session_state.ropa_img = "images/vestido_corto.jpg"
+            st.session_state.ropa_img = "images/vestido.jpg"
             st.session_state.step = 4
             st.rerun()
 
     with col3:
         st.image("images/vestido_largo.jpg", use_container_width=True)
-        if st.button("✨ Vestido largo"):
-            st.session_state.ropa = "Vestido largo"
-            st.session_state.ropa_img = "images/vestido_largo.jpg"
+        if st.button(" De astronauta"):
+            st.session_state.ropa = "De astronauta"
+            st.session_state.ropa_img = "images/astrunauta.jpg"
             st.session_state.step = 4
             st.rerun()
 
