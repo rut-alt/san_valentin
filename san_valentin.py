@@ -61,7 +61,7 @@ elif st.session_state.step == 2:
             st.rerun()
 
     with col3:
-        show_image("images/yo.pjg.jpg")
+        show_image("images/yo.pjpg.png")
         if st.button("A mí"):
             st.warning("ANDA TONTO 😂 ese es el postre!! ¡Elige bien!")
 
