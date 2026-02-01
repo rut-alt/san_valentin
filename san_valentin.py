@@ -115,13 +115,13 @@ elif st.session_state.step == 4:
 
     st.markdown("<h3 style='text-align:center;'>14 de febrero 🗓️</h3>", unsafe_allow_html=True)
 
-    st.markdown("### 🍽️ Cena elegida:")
+    st.markdown("###Cena elegida:")
     st.write(st.session_state.cena)
 
     if st.session_state.cena_img:
         show_image(st.session_state.cena_img)
 
-    st.markdown("### 👗 Outfit elegido:")
+    st.markdown("###Outfit elegido:")
     st.write(st.session_state.ropa)
     show_image(st.session_state.ropa_img)
 
