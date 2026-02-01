@@ -10,7 +10,20 @@ if "step" not in st.session_state:
 if "no_position" not in st.session_state:
     st.session_state.no_position = random.randint(0, 2)
 
-# ---------- STEP 1 ----------
+if "cena" not in st.session_state:
+    st.session_state.cena = None
+
+if "cena_img" not in st.session_state:
+    st.session_state.cena_img = None
+
+if "ropa" not in st.session_state:
+    st.session_state.ropa = None
+
+if "ropa_img" not in st.session_state:
+    st.session_state.ropa_img = None
+
+
+# ---------- STEP 1: CITA ----------
 if st.session_state.step == 1:
     st.markdown(
         "<h1 style='text-align:center; color:#e60073;'>"
@@ -30,12 +43,10 @@ if st.session_state.step == 1:
         st.session_state.no_position = random.randint(0, 2)
         st.rerun()
 
-# ---------- STEP 2 ----------
+
+# ---------- STEP 2: CENA ----------
 elif st.session_state.step == 2:
-    st.markdown(
-        "<h1 style='text-align:center;'>¿Qué te gustaría cenar? 😋</h1>",
-        unsafe_allow_html=True
-    )
+    st.markdown("<h1 style='text-align:center;'>¿Qué te gustaría cenar? 😋</h1>", unsafe_allow_html=True)
 
     col1, col2 = st.columns(2)
     col3, col4 = st.columns(2)
@@ -43,12 +54,18 @@ elif st.session_state.step == 2:
     with col1:
         st.image("images/sushi.jpg", use_container_width=True)
         if st.button("🍣 Sushi"):
-            st.success("Perfecto 😍 Sushi it is!")
+            st.session_state.cena = "Sushi"
+            st.session_state.cena_img = "images/sushi.jpg"
+            st.session_state.step = 3
+            st.rerun()
 
     with col2:
         st.image("images/carne.jpg", use_container_width=True)
         if st.button("🥩 Carne"):
-            st.success("Ufff, planazo 🥩🔥")
+            st.session_state.cena = "Carne"
+            st.session_state.cena_img = "images/carne.jpg"
+            st.session_state.step = 3
+            st.rerun()
 
     with col3:
         st.image("images/ami.jpg", use_container_width=True)
@@ -58,10 +75,69 @@ elif st.session_state.step == 2:
     with col4:
         st.markdown("### 🤷‍♂️ Otro")
         otro = st.text_input("¿Qué te apetece?", placeholder="Escribe aquí...")
-
         if otro:
-            st.success(f"Perfecto 😌 entonces será: **{otro}**")
+            st.session_state.cena = otro
+            st.session_state.cena_img = None
+            st.session_state.step = 3
+            st.rerun()
 
-    st.markdown("<br>")
+
+# ---------- STEP 3: ROPA ----------
+elif st.session_state.step == 3:
+    st.markdown(
+        "<h1 style='text-align:center;'>¿Qué te gustaría más que me pusiera para nuestra cita? 😌</h1>",
+        unsafe_allow_html=True
+    )
+
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        st.image("images/falda.jpg", use_container_width=True)
+        if st.button("👗 Falda"):
+            st.session_state.ropa = "Falda"
+            st.session_state.ropa_img = "images/falda.jpg"
+            st.session_state.step = 4
+            st.rerun()
+
+    with col2:
+        st.image("images/vestido_corto.jpg", use_container_width=True)
+        if st.button("💃 Vestido corto"):
+            st.session_state.ropa = "Vestido corto"
+            st.session_state.ropa_img = "images/vestido_corto.jpg"
+            st.session_state.step = 4
+            st.rerun()
+
+    with col3:
+        st.image("images/vestido_largo.jpg", use_container_width=True)
+        if st.button("✨ Vestido largo"):
+            st.session_state.ropa = "Vestido largo"
+            st.session_state.ropa_img = "images/vestido_largo.jpg"
+            st.session_state.step = 4
+            st.rerun()
+
+
+# ---------- STEP 4: RESUMEN ----------
+elif st.session_state.step == 4:
+    st.markdown(
+        "<h1 style='text-align:center; color:#e60073;'>💘 CITA CONFIRMADA 💘</h1>",
+        unsafe_allow_html=True
+    )
+
+    st.markdown(
+        "<h3 style='text-align:center;'>14 de febrero 🗓️</h3>",
+        unsafe_allow_html=True
+    )
+
+    st.markdown("### 🍽️ Cena elegida:")
+    st.markdown(f"**{st.session_state.cena}**")
+
+    if st.session_state.cena_img:
+        st.image(st.session_state.cena_img, use_container_width=True)
+
+    st.markdown("### 👗 Lo que me pondré:")
+    st.markdown(f"**{st.session_state.ropa}**")
+    st.image(st.session_state.ropa_img, use_container_width=True)
+
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.success("Nos espera una cita increíble 💕")
     st.balloons()
-
